@@ -6,7 +6,8 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const srcDir = path.resolve(__dirname, './src');
-const distDir = path.resolve(__dirname, './docs');
+const distDir = path.resolve(__dirname, './dist');
+const docsDir = path.resolve(__dirname, './docs');
 
 const commonsPlugin = new webpack.optimize.CommonsChunkPlugin({
     name: 'commons',
@@ -30,7 +31,7 @@ module.exports = {
         // 'bacic': path.resolve(srcDir, './basic')
     },
     output: {
-        path: distDir,
+        path: docsDir,
         publicPath: '',
         filename: 'js/index.js',
         chunckFileName: '[id].bundle.js'
@@ -55,13 +56,13 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: extract.extract('css?minimize!postcss')
+                loader: extract.extract('css?minimize!postcss!sass-loader')
                 // loaders: ['style', 'css?minimize&-autoprefixer', 'postcss']
             }
         ]
     },
     plugins: [ commonsPlugin, extract, htmlPlugin ],
-    watch: true,
+    // watch: true,
 
     postcss: function () {
         return [

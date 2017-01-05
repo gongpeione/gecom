@@ -1,0 +1,26 @@
+$padding: .5rem;
+
+.g-container {
+    width: 90%;
+    padding: $padding;
+    margin: 0 auto;
+}
+
+.g-row {
+    position: relative;
+}
+
+[class*='g-col'] {
+    display: inline-block;
+}
+
+@for $i from 1 through 24 {
+    .g-col-#{$i} {
+        width: (100% * $i / 24 );
+    }
+}
+@for $i from 1 through 24 {
+    .g-col-offset-#{$i} {
+        margin-left: (100% * $i / 24 );
+    }
+}
