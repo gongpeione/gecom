@@ -421,3 +421,88 @@ textarea {
   font: inherit; /* 2 */
 }
 
+$main-color: #10446d;
+$main-color-light: #72acdc;
+$second-color: #ffea8e;
+$white: #fff;
+$white20: rgba(255, 255, 255, .2);
+$white50: rgba(255, 255, 255, .5);
+$white80: rgba(255, 255, 255, .8);
+
+$margin-big: 4rem;
+$margin-middle: 2rem;
+$margin-small: 1rem;
+$margin-tiny: .6rem;
+
+a {
+    text-decoration: none;
+}
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: #eee;
+}
+header.navigation {
+    background: $main-color;
+    overflow: hidden;
+    color: $white;
+    height: 4rem;
+    margin-bottom: $margin-big;
+
+    .logo {
+        float: left;
+        font-weight: 900;
+        font-size: 1.6rem;
+        line-height: 4rem;
+        padding: 0 1.5rem;
+    }
+    nav {
+        display: inline-block;
+        float: right;
+        height: 100%;
+    }
+    ul {
+        padding: 0;
+        margin: 0;
+        height: inherit;
+    }
+    li {
+        display: inline-block;
+        margin: 0 .8rem;
+        height: inherit;
+
+        a {
+            display: inline-block;
+            height: inherit;
+            color: $main-color-light;
+            padding: 0 1.5rem;
+            line-height: 4rem;
+
+            &:hover {
+                color: $white;
+            }
+        }
+
+        &.active {
+            border-bottom: 5px solid $second-color;
+
+            a {
+                color: $second-color;
+            }
+        }
+    }
+}
+
+.wrap {
+
+    article {
+        width: 80%;
+        background: $white;
+        border-radius: 3px;
+        margin: 0 auto;
+        box-shadow: 1px 1px 2px rgba(0,0,0, .2), 1px 0 1px rgba(0, 0, 0, .2);
+        margin-bottom: $margin-middle;
+    }
+}
