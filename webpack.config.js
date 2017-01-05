@@ -6,7 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const srcDir = path.resolve(__dirname, './src');
-const distDir = path.resolve(__dirname, './dist');
+const distDir = path.resolve(__dirname, './docs');
 
 const commonsPlugin = new webpack.optimize.CommonsChunkPlugin({
     name: 'commons',
