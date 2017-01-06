@@ -16,6 +16,7 @@ $padding: .5rem;
 
 @for $i from 1 through 24 {
     .g-col-#{$i} {
+        position: relative;
         width: (100% * $i / 24 );
     }
 }

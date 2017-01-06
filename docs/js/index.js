@@ -8,8 +8,6 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(3);
 	
-	__webpack_require__(11);
-	
 	__webpack_require__(13);
 	
 	__webpack_require__(15);
@@ -17,6 +15,8 @@ webpackJsonp([0,1],[
 	__webpack_require__(17);
 	
 	__webpack_require__(19);
+	
+	__webpack_require__(21);
 	
 	console.log('src');
 
@@ -40,6 +40,8 @@ webpackJsonp([0,1],[
 	__webpack_require__(7);
 	
 	__webpack_require__(9);
+	
+	__webpack_require__(11);
 
 /***/ },
 /* 4 */
@@ -96,8 +98,6 @@ webpackJsonp([0,1],[
 	'use strict';
 	
 	__webpack_require__(12);
-	
-	console.log('data');
 
 /***/ },
 /* 12 */
@@ -113,7 +113,7 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(14);
 	
-	console.log('form');
+	console.log('data');
 
 /***/ },
 /* 14 */
@@ -129,7 +129,7 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(16);
 	
-	console.log('navigation');
+	console.log('form');
 
 /***/ },
 /* 16 */
@@ -145,7 +145,7 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(18);
 	
-	console.log('notice');
+	console.log('navigation');
 
 /***/ },
 /* 18 */
@@ -161,10 +161,26 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(20);
 	
-	console.log('others');
+	console.log('notice');
 
 /***/ },
 /* 20 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(22);
+	
+	console.log('others');
+
+/***/ },
+/* 22 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

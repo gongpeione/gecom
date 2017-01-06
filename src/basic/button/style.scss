@@ -1,0 +1,280 @@
+@import '../var.scss';
+
+button {
+    border: none;
+    background: none;
+    padding: $gap-tiny $gap-normal;
+    border: 1px solid $light;
+    border-radius: 3px;
+    outline: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    position: relative;
+
+    &:hover {
+        background: $light;
+    }
+
+    &:active {
+        border-color: $gray;
+        background: $gray-light;
+    }
+
+    &.big {
+        padding: $gap-normal $gap-middle;
+        font-size: 2.5rem;
+    }
+    &.middle {
+        padding: $gap-small $gap-normal;
+        font-size: 2.2rem;
+    }
+    &.normal {
+        padding: $gap-small $gap-normal;
+        font-size: 1.8rem;
+    }
+    &.small {
+        padding: $gap-tiny $gap-tiny;
+        font-size: 1.4rem;
+    }
+    &.tiny {
+        padding: 0 $gap-tiny;
+        font-size: .8rem;
+    }
+}
+
+.g-button--primary {
+    border-color: $green;
+    background: $green;
+    color: $white;
+
+    &:hover {
+        background: $green-light;
+        border-color: $green-light;
+    }
+    &:active {
+        background: $green-dark;
+        border-color: $green-dark;
+    }
+
+}
+.g-button--primary_blue {
+    border-color: $blue;
+    background: $blue;
+    color: $white;
+
+    &:hover {
+        background: $blue-light;
+        border-color: $blue-light; 
+    }
+    &:active {
+        background: $blue-dark;
+        border-color: $blue-dark; 
+    }
+}
+
+.g-button--text {
+    border-color: transparent;
+
+    &:hover {
+        border-color: transparent;
+        background: none;
+        color: $gray;
+    }
+    &:active {
+        border-color: transparent;
+        background: none;
+        color: $dark-light;
+    }
+}
+
+.g-button--yellow {
+    border-color: $yellow;
+    background: $yellow;
+    color: $white;
+
+    &:hover {
+        background: lighten($yellow, 5%);
+        border-color: lighten($yellow, 5%); 
+    }
+    &:active {
+        background: darken($yellow, 10%);
+        border-color: darken($yellow, 10%);
+    }
+}
+.g-button--red {
+    border-color: $red;
+    background: $red;
+    color: $white;
+
+    &:hover {
+        background: lighten($red, 5%);
+        border-color: lighten($red, 5%); 
+    }
+    &:active {
+        background: darken($red, 10%);
+        border-color: darken($red, 10%);
+    }
+}
+
+.g-button--primary.hollow {
+    border-color: $light;
+    background: transparent;
+    color: $dark;
+
+    &:hover {
+        background: transparent;
+        border-color: $green;
+        color: $green
+    }
+    &:active {
+        background: transparent;
+        border-color: $green-dark;
+        color: $green-dark;
+    }
+
+}
+.g-button--primary_blue.hollow {
+    border-color: $light;
+    background: transparent;
+    color: $dark;
+
+    &:hover {
+        background: transparent;
+        border-color: $blue;
+        color: $blue
+    }
+    &:active {
+        background: transparent;
+        border-color: $blue-dark;
+        color: $blue-dark;
+    }
+}
+.g-button--yellow.hollow {
+    border-color: $light;
+    background: transparent;
+    color: $dark;
+
+    &:hover {
+        background: transparent;
+        border-color: $yellow;
+        color: $yellow
+    }
+    &:active {
+        background: transparent;
+        border-color: darken($yellow, 10%);
+        color: darken($yellow, 10%);
+    }
+}
+.g-button--red.hollow {
+    border-color: $light;
+    background: transparent;
+    color: $dark;
+
+    &:hover {
+        background: transparent;
+        border-color: $red;
+        color: $red
+    }
+    &:active {
+        background: transparent;
+        border-color: darken($red, 10%);
+        color: darken($red, 10%);
+    }
+}
+
+.g-button--group {
+    font-size: 0;
+    display: inline-block;
+    button {
+        border-radius: 0;
+        border-right: 1px solid $white50;
+        &:first-child {
+            border-radius: 3px 0 0 3px;
+        }
+        &:last-child {
+            border-radius: 0 3px 3px 0;
+            border-right: none;
+        }
+        &:hover {
+            border-right: 1px solid $white50;
+
+            &:last-child {
+                border-right: none;
+            }
+        }
+    }
+}
+
+button.loading {
+    opacity: .5;
+    transition: all .5s linear;
+    padding-left: 3rem;
+
+    &::before {
+        content: '';
+        height: 10px;
+        width: 10px;
+        background: $white;
+        position: absolute;
+        left: 1.5rem;
+        top: 50%;
+        margin-top: -5px;
+        animation: loading 1s infinite;
+    }
+
+    @keyframes loading {
+        0% {
+            border-radius: 0;
+            opacity: 1;
+            transform: rotate(0deg); 
+        }
+        50% {
+            border-radius: 50%;
+            opacity: .5;
+            transform: rotate(180deg); 
+        }
+        100% {
+            border-radius: 1%;
+            opacity: 1;
+            transform: rotate(359deg); 
+        }
+    }
+}
+
+button[disabled] {
+    // background: $light;
+    color: $gray-light;
+    border-color: $light;
+    cursor: not-allowed;
+
+    &:hover,
+    &:active {
+        background: transparent;
+        color: $gray-light;
+        border-color: $light;
+    }
+}
+[class*='g-button'][disabled] {
+    background: $light;
+    color: $gray;
+    border-color: $gray-light;
+
+    &:hover,
+    &:active {
+        background: $light;
+        color: $gray;
+        border-color: $gray-light;
+    }
+}
+[class*='g-button--text'][disabled] {
+    background: transparent;
+    color: $gray-light;
+    border-color: transparent;
+
+    &:hover,
+    &:active {
+        background: transparent;
+        color: $gray-light;
+        border-color: transparent;
+    }
+}

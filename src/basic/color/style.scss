@@ -1,67 +1,51 @@
-$green: #54DD70;
-$green-light: #89F29E;
-$green-dark: #3CA651;
-
-$blue: #38AFF6;
-$blue-light: #73CBFF;
-$blue-dark: #2085C1;
-
-$yellow: #FFCD49;
-$red: #F1584D;
-
-$dark: #3D4448;
-$dark-light: #535C60;
-$gray: #747E86;
-$gray-light: #ABB5BC;
-$light: #E5E9EC;
-$white: #fff;
+@import '../var.scss';
 
 body {
     color: $dark;
 }
 
-.g-bg-green {
+.g-bg--green {
     background-color: $green;
 }
-.g-bg-green-light {
+.g-bg--green_light {
     background-color: $green-light;
 }
-.g-bg-green-dark {
+.g-bg--green_dark {
     background-color: $green-dark;
 }
-.g-bg-blue {
+.g-bg--blue {
     background-color: $blue;
 }
-.g-bg-blue-light {
+.g-bg--blue_light {
     background-color: $blue-light;
 }
-.g-bg-blue-dark {
+.g-bg--blue_dark {
     background-color: $blue-dark;
 }
 
-.g-bg-yellow {
+.g-bg--yellow {
     background-color: $yellow;
 }
-.g-bg-red {
+.g-bg--red {
     background-color: $red;
 }
 
 
-.g-bg-dark {
+.g-bg--dark {
     background-color: $dark;
 }
-.g-bg-dark-light {
+.g-bg--dark_light {
     background-color: $dark-light;
 }
-.g-bg-gray {
+.g-bg--gray {
     background-color: $gray;
 }
-.g-bg-gray-light {
+.g-bg--gray_light {
     background-color: $gray-light;
 }
-.g-bg-light {
+.g-bg--light {
     background-color: $light;
 }
-.g-bg-white {
+.g-bg--white {
     background-color: $white;
 }

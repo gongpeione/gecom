@@ -10,7 +10,7 @@ body {
     line-height: 1.5;
 }
 h1, h2, h3, h4, h5, h6 {
-
+    font-weight: 400;
 }
 h1,
 .h1 {
@@ -39,4 +39,5 @@ h6,
 p,
 .p {
     font-size: 1.6rem;
+    margin-bottom: 1.6rem;
 }
