@@ -1,0 +1,42 @@
+$fontSize: 4rem;
+
+html {
+    font-size: 10px;
+}
+body {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-size: 1.6rem;
+    font-weight: 300;
+    line-height: 1.5;
+}
+h1, h2, h3, h4, h5, h6 {
+
+}
+h1,
+.h1 {
+    font-size: $fontSize;
+}
+h2,
+.h2 {
+    font-size: $fontSize - .5;
+}
+h3,
+.h3 {
+    font-size: $fontSize - 1;
+}
+h4,
+.h4 {
+    font-size: $fontSize - 1.5;
+}
+h5,
+.h5 {
+    font-size: $fontSize - 1.6;
+}
+h6,
+.h6 {
+    font-size: $fontSize - 1.7;
+}
+p,
+.p {
+    font-size: 1.6rem;
+}

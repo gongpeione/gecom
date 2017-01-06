@@ -424,16 +424,33 @@ textarea {
 $main-color: #3e4f58;
 $main-color-light: #85a7b9;
 $second-color: #a2e7ff;
-$gray: #eee;
-$white: #fff;
+
 $white20: rgba(255, 255, 255, .2);
 $white50: rgba(255, 255, 255, .5);
 $white80: rgba(255, 255, 255, .8);
 
-$margin-big: 4rem;
-$margin-middle: 2rem;
-$margin-small: 1rem;
-$margin-tiny: .6rem;
+$margin-big: 5rem;
+$margin-middle: 3rem;
+$margin-small: 2rem;
+$margin-tiny: 1rem;
+
+$green: #54DD70;
+$green-light: #89F29E;
+$green-dark: #3CA651;
+
+$blue: #38AFF6;
+$blue-light: #73CBFF;
+$blue-dark: #2085C1;
+
+$yellow: #FFCD49;
+$red: #F1584D;
+
+$dark: #3D4448;
+$dark-light: #535C60;
+$gray: #747E86;
+$gray-light: #ABB5BC;
+$light: #E5E9EC;
+$white: #fff;
 
 a {
     text-decoration: none;
@@ -446,18 +463,23 @@ body {
     background: #eee;
 }
 header.navigation {
-    background: $main-color;
+    // background: $main-color;
     overflow: hidden;
     color: $white;
-    height: 4rem;
+    height: 7rem;
+    font-size: 2rem;
     margin-bottom: $margin-big;
 
     .logo {
         float: left;
         font-weight: 900;
-        font-size: 1.6rem;
-        line-height: 4rem;
-        padding: 0 1.5rem;
+        font-size: 3rem;
+        line-height: 7rem;
+        padding: 0 3rem;
+
+        & span {
+          color: $green;
+        }
     }
     nav {
         display: inline-block;
@@ -478,8 +500,8 @@ header.navigation {
             display: inline-block;
             height: inherit;
             color: $main-color-light;
-            padding: 0 1.5rem;
-            line-height: 4rem;
+            padding: 0 3rem;
+            line-height: 7rem;
 
             &:hover {
                 color: $white;
@@ -487,10 +509,10 @@ header.navigation {
         }
 
         &.active {
-            border-bottom: 5px solid $second-color;
+            border-bottom: 5px solid $green;
 
             a {
-                color: $second-color;
+                color: $green;
             }
         }
     }
@@ -505,32 +527,36 @@ header.navigation {
         margin: 0 auto;
         box-shadow: 1px 1px 2px rgba(0,0,0, .2), 1px 0 1px rgba(0, 0, 0, .2);
         margin-bottom: $margin-middle;
-        color: $main-color;
+        // color: $main-color;
         // overflow: hidden;
 
-        h3 {
-            text-align: center;
-            color: $main-color;
-            font-size: 1.5rem;
-            margin: 0;
-            margin-bottom: $margin-tiny;
-        }
-        p {
-            text-align: center;
-            font-size: .5rem;
-            color: #aaa;
-            margin: 0;
-        }
         header {
             position: relative;
             padding: $margin-middle 0;
             margin-bottom: $margin-middle;
+
+            h3 {
+                text-align: center;
+                color: $main-color;
+                // font-size: 1.5rem;
+                margin: 0;
+                margin-bottom: $margin-tiny;
+            }
+
+            p {
+                text-align: center;
+                font-size: .5rem;
+                color: #aaa;
+                margin: 0;
+            }
+
+
             &::after {
                 content: '';
                 position: absolute;
                 height: 3px;
                 width: 50px;
-                background: $second-color;
+                background: $green-light;
                 left: 50%;
                 bottom: 0;
                 transform: translateX(-50%);
@@ -538,22 +564,57 @@ header.navigation {
         }
     }
 
-    section.color {
+    section {
         width: 90%;
         margin: 0 auto;
+
+        .example {
+            border: 1px solid $light;
+            border-radius: 3px;
+            // padding: 2rem 3rem;
+            position: relative;
+            
+            .result {
+                padding: 2rem 3rem;
+            }
+            .code {
+                position: absolute;
+                height: 100%;
+                // padding: 1rem 2rem;
+                background: $light;
+                // overflow: auto;
+                &::before {
+                    content: 'Code';
+                    position: absolute;
+                    right: 1rem;
+                    top: 1rem;
+                    color: $gray;
+                }
+            }
+            pre {
+                position: absolute;
+                height: calc(100% - 2rem);
+                width: 100%;
+                padding: 0 2rem;
+                margin: 0;
+                margin-top: 2rem;
+                overflow: auto;
+                color: $dark-light;
+            }
+        }
         .row > div {
-            padding: 1rem 1.4rem;
-            text-align: center;
-            color: $white;
+            // padding: 2rem 1.4rem;
+            // text-align: center;
+            // color: $white;
             
             &.g-bg-white {
                 color: $main-color;
             }
         }
         
-        h4 {
+        > h4 {
             text-align: center;
-            font-size: 1rem;
+            // font-size: 1rem;
             position: relative;
             padding: 1rem;
 
@@ -562,11 +623,24 @@ header.navigation {
                 position: absolute;
                 height: 3px;
                 width: 30px;
-                background: $gray;
+                background: $light;
                 bottom: 0;
                 left: 50%;
                 transform: translateX(-50%);
             }
         }
+    }
+    .color {
+        .row > div {
+            text-align: center;
+            color: $white;
+            padding: 2rem 1.4rem;
+        }
+    }
+    .typography {
+      .result > * {
+        margin: 0;
+        margin-bottom: $margin-tiny;
+      }
     }
 }

@@ -55,7 +55,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.css$/,
+                test: /\.css$|\.scss$/,
                 loader: extract.extract('css?minimize!postcss!sass-loader')
                 // loaders: ['style', 'css?minimize&-autoprefixer', 'postcss']
             }
