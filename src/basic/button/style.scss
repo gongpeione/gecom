@@ -29,11 +29,11 @@ button {
         font-size: 2.2rem;
     }
     &.normal {
-        padding: $gap-small $gap-normal;
+        padding: $gap-tiny $gap-small;
         font-size: 1.8rem;
     }
     &.small {
-        padding: $gap-tiny $gap-small;
+        padding: 0 $gap-tiny;
         font-size: 1.6rem;
     }
     &.tiny {

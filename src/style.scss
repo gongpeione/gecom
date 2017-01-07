@@ -8,6 +8,10 @@ a {
 * {
     box-sizing: border-box;
 }
+::selection {
+  color: $white; 
+  background: $green;
+} 
 
 body {
     background: #eee;
