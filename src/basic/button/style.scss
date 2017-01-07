@@ -21,8 +21,8 @@ button {
     }
 
     &.big {
-        padding: $gap-normal $gap-middle;
-        font-size: 2.5rem;
+        padding: $gap-small $gap-normal;
+        font-size: 3rem;
     }
     &.middle {
         padding: $gap-small $gap-normal;
@@ -33,12 +33,12 @@ button {
         font-size: 1.8rem;
     }
     &.small {
-        padding: $gap-tiny $gap-tiny;
-        font-size: 1.4rem;
+        padding: $gap-tiny $gap-small;
+        font-size: 1.6rem;
     }
     &.tiny {
         padding: 0 $gap-tiny;
-        font-size: .8rem;
+        font-size: 1.2rem;
     }
 }
 
@@ -209,6 +209,8 @@ button.loading {
     opacity: .5;
     transition: all .5s linear;
     padding-left: 3rem;
+    pointer-events: none;
+    cursor: not-allowed;
 
     &::before {
         content: '';
@@ -256,7 +258,7 @@ button[disabled] {
 }
 [class*='g-button'][disabled] {
     background: $light;
-    color: $gray;
+    color: $gray-light;
     border-color: $gray-light;
 
     &:hover,
