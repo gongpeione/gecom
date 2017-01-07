@@ -1,0 +1,73 @@
+@import '../../basic/var.scss';
+
+input[type=checkbox] {
+    position: relative;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        width: 1.5rem;
+        height: 1.5rem;
+        border: .1rem solid $green;
+        background: $white;
+        border-radius: 3px;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+
+        transition: all .1s ease-in-out;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border: .7rem solid $green;
+        border-radius: 3px;
+        background: $green;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0);
+
+        transition: all .1s ease-in-out;
+    }
+
+    &:checked {
+        &::after {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        &::before {
+            
+        }
+    }
+
+    &.g-radio--blue {
+        &::before,
+        &::after {
+            border-color: $blue;
+        }
+    }
+
+    &.g-radio--yellow {
+        &::before,
+        &::after {
+            border-color: $yellow;
+        }
+    }
+
+    &.g-radio--red {
+        &::before,
+        &::after {
+            border-color: $red;
+        }
+    }
+
+    &[disabled] {
+        cursor: not-allowed;
+        &::before,
+        &::after {
+            border-color: $light;
+        }
+    }
+}

@@ -260,4 +260,16 @@ header.navigation {
             margin-right: 1rem;
         }
     }
+
+    .radio,
+    .checkbox {
+        label {
+            + label {
+                margin-left: 1.5rem;
+            }
+            input {
+                margin-right: .2rem;
+            }
+        }
+    }
 }
