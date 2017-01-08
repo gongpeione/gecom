@@ -1,11 +1,11 @@
 @import '../../basic/var.scss';
 
+$append-line-height: 0.16rem * 1.5 + $gap-tiny * 2;
 input,
 textarea {
-    border: .1rem solid $light;
+    border: $border solid $light;
     outline: none;
     padding: $gap-tiny $gap-small;
-    font-size: 1.6rem;
     border-radius: 3px;
 
     &::placeholder {
@@ -61,11 +61,11 @@ textarea {
 
     &.g-input--big {
         padding: $gap-small $gap-middle;
-        font-size: 2.5rem;
+        font-size: .25rem;
     }
     &.g-input--small {
         padding: 0 $gap-tiny;
-        font-size: 1.2rem;
+        font-size: .12rem;
     }
 }
 .g-input--assign {
@@ -73,6 +73,7 @@ textarea {
 
     & > * {
         border-radius: 0;
+        font-size: .16rem;
     }
 
     & :first-child {
@@ -83,18 +84,18 @@ textarea {
     }
     span {
         // float: left;
-        font-size: 1.6rem;
+        font-size: .16rem;
         display: inline-block;
         padding: 0 $gap-small;
-        // border: .1rem solid $light;
+        border: $border solid $light;
         border-right: none;
         color: $gray;
         background: $light;
-        line-height: 3.4rem;
+        line-height: 0.16rem * 1.5 + $gap-tiny * 2;
     }
 }
 
 textarea {
     max-width: 100%;
-    height: 10rem;
+    height: 1rem;
 }

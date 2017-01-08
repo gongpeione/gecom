@@ -20,16 +20,16 @@ header.navigation {
     // background: $main-color;
     overflow: hidden;
     color: $white;
-    height: 7rem;
-    font-size: 2rem;
+    height: .7rem;
+    font-size: .2rem;
     margin-bottom: $margin-big;
 
     .logo {
         float: left;
         font-weight: 900;
-        font-size: 3rem;
-        line-height: 7rem;
-        padding: 0 3rem;
+        font-size: .3rem;
+        line-height: .7rem;
+        padding: 0 .3rem;
         position: relative;
         margin: 0;
 
@@ -40,11 +40,11 @@ header.navigation {
         &::after {
             content: "";
             position: absolute;
-            top: calc(50% + .7rem);
-            margin-left: .5rem;
+            top: calc(50% + .07rem);
+            margin-left: .05rem;
             background: $green;
             height: 2px;
-            width: 1.5rem;
+            width: .15rem;
 
             animation: blink 1.5s steps(1) infinite;
         }
@@ -73,15 +73,15 @@ header.navigation {
     }
     li {
         display: inline-block;
-        margin: 0 .8rem;
+        margin: 0 .08rem;
         height: inherit;
 
         a {
             display: inline-block;
             height: inherit;
             color: $main-color-light;
-            padding: 0 3rem;
-            line-height: 7rem;
+            padding: 0 .3rem;
+            line-height: .7rem;
 
             &:hover {
                 color: $white;
@@ -101,7 +101,7 @@ header.navigation {
 .wrap {
 
     article {
-        width: 80%;
+        width: 90%;
         background: $white;
         border-radius: 3px;
         margin: 0 auto;
@@ -125,7 +125,7 @@ header.navigation {
 
             p {
                 text-align: center;
-                font-size: 1.2rem;
+                font-size: .12rem;
                 color: #aaa;
                 margin: 0;
             }
@@ -156,9 +156,9 @@ header.navigation {
         
         > h3 {
             text-align: center;
-            font-size: 2rem;
+            font-size: .2rem;
             position: relative;
-            padding: 1rem;
+            padding: .1rem;
 
             &::after {
                 content: '';
@@ -181,15 +181,15 @@ header.navigation {
         position: relative;
         
         .result {
-            padding: 2rem 3rem;
-            font-size: 1.6rem;
+            padding: .2rem .3rem;
+            font-size: .16rem;
         }
         .h4 {
-            margin: 3rem 0 2rem 0;
+            margin: .3rem 0 .2rem 0;
             border-left: 1px solid $green;
-            margin-left: calc(-3rem - 1px);
-            padding: 0 3rem;
-            font-size: 1.8rem;
+            margin-left: calc(-.3rem - 1px);
+            padding: 0 .3rem;
+            font-size: .18rem;
 
             &:first-child {
                 margin-top: 0;
@@ -198,17 +198,17 @@ header.navigation {
         .code {
             // position: absolute;
             height: 100%;
-            font-size: 1.6rem;
+            font-size: .16rem;
             // padding: 1rem 2rem;
             background: $light;
             user-select: none;
             // overflow: auto;
             .code-button {
                 position: absolute;
-                right: 1rem;
-                top: -2.5rem;
-                padding: .5rem 1.5rem;
-                border-radius: 1rem 1rem 0 0;
+                right: .1rem;
+                top: -.25rem;
+                padding: .05rem .15rem;
+                border-radius: .1rem .1rem 0 0;
                 color: $gray-light;
                 background: $light;
                 cursor: pointer;
@@ -225,10 +225,10 @@ header.navigation {
             // position: absolute;
             // height: calc(100% - 2rem);
             // width: 100%;
-            height: 2rem;
-            padding: 0 2rem;
+            height: .2rem;
+            padding: 0 .2rem;
             margin: 0;
-            margin-top: 2rem;
+            margin-top: .2rem;
             overflow: hidden;
             color: $dark-light;
             // transition: height .5s ease-in-out;
@@ -247,7 +247,7 @@ header.navigation {
         .row > div {
             text-align: center;
             color: $white;
-            padding: 2rem 1.4rem;
+            padding: .2rem .14rem;
         }
         .row > .g-bg--white {
             color: $dark;
@@ -261,7 +261,7 @@ header.navigation {
     }
     .button {
         .g-button--group {
-            margin-right: 1rem;
+            margin-right: .1rem;
         }
     }
 
@@ -269,16 +269,16 @@ header.navigation {
     .checkbox {
         label {
             + label {
-                margin-left: 1.5rem;
+                margin-left: .15rem;
             }
-            input {
-                margin-right: .2rem;
-            }
+            // input {
+            //     margin-right: .2rem;
+            // }
         }
     }
     .input {
         .g-input--assign {
-            margin-bottom: 1rem;
+            margin-bottom: .1rem;
         }
     }
 }
