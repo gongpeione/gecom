@@ -1,0 +1,100 @@
+@import '../../basic/var.scss';
+
+input,
+textarea {
+    border: .1rem solid $light;
+    outline: none;
+    padding: $gap-tiny $gap-small;
+    font-size: 1.6rem;
+    border-radius: 3px;
+
+    &::placeholder {
+        color: $gray;
+    }
+    &:focus {
+        border-color: $green;
+
+        &.g-input--green {
+            border-color: $blue;
+        }
+        &.g-input--blue {
+            border-color: $blue;
+        }
+        &.g-input--yellow {
+            border-color: $yellow;
+        }
+        &.g-input--red {
+            border-color: $red;
+        }
+    }
+
+    &.g-input--status_green {
+        border-color: $green;
+        &::placeholder {
+            color: darken($green, 20%);
+        }
+    }
+    &.g-input--status_blue {
+        border-color: $blue;
+        &::placeholder {
+            color: darken($blue, 20%);
+        }
+    }
+    &.g-input--status_yellow {
+        border-color: $yellow;
+        &::placeholder {
+            color: darken($yellow, 20%);
+        }
+    }
+    &.g-input--status_red {
+        border-color: $red;
+        &::placeholder {
+            color: darken($red, 20%);
+        }
+    }
+
+    &[disabled] {
+        border-color: $gray-light;
+        background: $light;
+        cursor: not-allowed;
+    }
+
+    &.g-input--big {
+        padding: $gap-small $gap-middle;
+        font-size: 2.5rem;
+    }
+    &.g-input--small {
+        padding: 0 $gap-tiny;
+        font-size: 1.2rem;
+    }
+}
+.g-input--assign {
+    font-size: 0;
+
+    & > * {
+        border-radius: 0;
+    }
+
+    & :first-child {
+        border-radius: 3px 0 0 3px;
+    }
+    & :last-child {
+        border-radius: 0 3px 3px 0;
+    }
+    span {
+        // float: left;
+        font-size: 1.6rem;
+        display: inline-block;
+        padding: 0 $gap-small;
+        // border: .1rem solid $light;
+        border-right: none;
+        color: $gray;
+        background: $light;
+        line-height: 3.4rem;
+    }
+}
+
+textarea {
+    max-width: 100%;
+    height: 10rem;
+}

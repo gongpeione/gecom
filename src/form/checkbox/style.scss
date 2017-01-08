@@ -8,7 +8,7 @@ input[type=checkbox] {
         position: absolute;
         width: 1.5rem;
         height: 1.5rem;
-        border: .1rem solid $green;
+        border: .1rem solid $gray-light;
         background: $white;
         border-radius: 3px;
         left: 50%;
@@ -23,9 +23,8 @@ input[type=checkbox] {
         position: absolute;
         width: 0;
         height: 0;
-        border: .7rem solid $green;
+        border: .6rem solid $gray-light;
         border-radius: 3px;
-        background: $green;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%) scale(0);
@@ -42,6 +41,12 @@ input[type=checkbox] {
         }
     }
 
+    &.g-radio--green {
+        &::before,
+        &::after {
+            border-color: $green;
+        }
+    }
     &.g-radio--blue {
         &::before,
         &::after {
