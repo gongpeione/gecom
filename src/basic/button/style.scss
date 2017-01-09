@@ -9,6 +9,7 @@ button {
     outline: none;
     cursor: pointer;
     position: relative;
+    transition: all .2s linear;
 
     &:hover {
         background: $light;
@@ -207,18 +208,18 @@ button {
 
 button.loading {
     opacity: .5;
-    transition: all .5s linear;
-    padding-left: $gap-small + $gap-middle;
+    transition: all .2s linear;
+    padding-left: $gap-big;
     pointer-events: none;
     cursor: not-allowed;
 
     &::before {
         content: '';
-        height: 10px;
-        width: 10px;
+        height: .5em;
+        width: .5em;
         background: $white;
         position: absolute;
-        left: $gap-normal;
+        left: $gap-big / 2;
         top: 50%;
         margin-top: -5px;
         animation: loading 1s infinite;
