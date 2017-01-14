@@ -1,0 +1,58 @@
+@import '../../basic/var.scss';
+
+.g-input--num {
+
+    font-size: 0;
+    span,
+    input {
+        font-size: .16rem;
+    }
+    input {
+        width: .8rem;
+        text-align: center;
+    }
+    span {
+        // float: left;
+        width: .4rem;
+        text-align: center;
+        font-size: .2rem;
+        font-weight: 400;
+        display: inline-block;
+        padding: 0 $gap-small;
+        border: $border solid $light;
+        border-right: none;
+        border-left: none;
+        color: $white;
+        background: $green;
+        line-height: 0.16rem * 1.5 + $gap-tiny * 2;
+        vertical-align: bottom;
+        cursor: pointer;
+
+        &:hover {
+            background: $green-light;
+        }
+        &:active {
+            background: $green-dark;
+        }
+    }
+    & :first-child {
+        border-radius: 3px 0 0 3px;
+    }
+    & :last-child {
+        border-radius: 0 3px 3px 0;
+        border-left: $border solid $white20;
+    }
+
+    .min {
+        &::before {
+            content: '-';
+
+        }
+    }
+    .plus {
+        &::before {
+            content: '+';
+
+        }
+    }
+}
