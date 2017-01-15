@@ -1,0 +1,10 @@
+@import '../../basic/var.scss';
+
+select {
+    padding: $gap-tiny $gap-normal;
+    margin: 0;
+    border: .01rem solid $light;
+    background: $white;
+    color: $dark;
+    outline: none;
+}

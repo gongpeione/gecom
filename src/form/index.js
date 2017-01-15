@@ -6,3 +6,4 @@ import './radio';
 import './checkbox';
 import './input';
 import './inputNum';
+import './select';
