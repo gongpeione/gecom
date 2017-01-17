@@ -313,6 +313,8 @@ webpackJsonp([0,1],[
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+	
 	exports.default = {
 	    $: function $(selector) {
 	        var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
@@ -347,6 +349,17 @@ webpackJsonp([0,1],[
 	        return node;
 	    },
 	
+	    attr: function attr(node, _attr) {
+	        var newVal = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+	
+	        if (newVal) {
+	            node.setAttribute(_attr, newVal);
+	            return;
+	        }
+	
+	        return node.getAttribute(_attr);
+	    },
+	
 	    attrs: function attrs(node) {
 	        var attrs = {};
 	        Array.from(node.attributes).forEach(function (attr) {
@@ -355,6 +368,26 @@ webpackJsonp([0,1],[
 	        });
 	
 	        return attrs;
+	    },
+	
+	    class: function _class(node, className) {
+	        var remove = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	
+	        if (remove) {
+	            node.classList.remove(className);
+	            return;
+	        }
+	        if (Array.isArray(className)) {
+	            var _node$classList;
+	
+	            (_node$classList = node.classList).add.apply(_node$classList, _toConsumableArray(className));
+	            return;
+	        }
+	        node.classList.add(className);
+	    },
+	
+	    css: function css(node, styles) {
+	        node.style.cssText = node.style.cssText ? node.style.cssText += styles : styles;
 	    },
 	
 	    vdom: function () {
@@ -368,6 +401,8 @@ webpackJsonp([0,1],[
 	            this.tagName = tagName;
 	            this.attrs = attrs;
 	            this.children = Array.isArray(children) ? children : Array.from(children);
+	
+	            this.event = [];
 	        }
 	
 	        _createClass(VDOM, [{
@@ -380,6 +415,13 @@ webpackJsonp([0,1],[
 	                    node.setAttribute(attr, attrs[attr]);
 	                }
 	
+	                console.log(this.event);
+	                if (this.event.length) {
+	                    this.event.forEach(function (eachEvent) {
+	                        node.addEventListener(eachEvent.eventName, eachEvent.callback);
+	                    });
+	                }
+	
 	                var children = this.children;
 	
 	                Array.from(children).forEach(function (child) {
@@ -389,6 +431,14 @@ webpackJsonp([0,1],[
 	                });
 	
 	                return node;
+	            }
+	        }, {
+	            key: 'addEvent',
+	            value: function addEvent(eventName, callback) {
+	                this.event.push({
+	                    eventName: eventName,
+	                    callback: callback
+	                });
 	            }
 	        }]);
 	
@@ -419,6 +469,7 @@ webpackJsonp([0,1],[
 	var vdom = _basic2.default.vdom;
 	
 	select.forEach(function (item) {
+	
 	    var tmpFragment = document.createDocumentFragment();
 	    var parentNode = item.parentNode;
 	    var nodeAttrs = _basic2.default.attrs(item);
@@ -435,7 +486,21 @@ webpackJsonp([0,1],[
 	            selected.text = text;
 	            selected.value = attrs['value'];
 	        }
-	        options.push(new vdom('li', attrs, [text]));
+	
+	        var listItem = new vdom('li', attrs, [text]);
+	        listItem.addEvent('click', function (e) {
+	            var li = e.target;
+	            var ul = li.parentNode;
+	            var parent = ul.parentNode;
+	            var input = _basic2.default.$('input', parent);
+	
+	            parent.classList.remove('slideDown');
+	            input.value = li.innerText;
+	            input['data-value'] = _basic2.default.attr(li, 'value');
+	
+	            console.log(li, ul, parent, input);
+	        });
+	        options.push(listItem);
 	    });
 	    if (selected.value === '') {
 	        selected.text = optionsOriginal[0].innerText;
@@ -448,12 +513,26 @@ webpackJsonp([0,1],[
 	        value: selected.text,
 	        'data-value': selected.value
 	    });
+	    input.addEvent('click', function (e) {
+	        var parent = e.target.parentNode;
+	
+	        parent.classList.toggle('slideDown');
+	    });
+	    input.addEvent('blur', function (e) {
+	        var parent = e.target.parentNode;
+	
+	        parent.classList.remove('slideDown');
+	    });
 	    var selectList = new vdom('ul', {}, options);
 	
 	    nodeAttrs['class'] = nodeAttrs['class'] ? nodeAttrs['class'] += ' g-selector' : 'g-selector';
-	    var node = new vdom('div', nodeAttrs, [input, selectList]).render();
-	    parentNode.insertBefore(node, item);
-	    item.remove();
+	    var node = new vdom('div', nodeAttrs, [input, selectList]);
+	    console.log(node);
+	
+	    parentNode.insertBefore(node.render(), item);
+	
+	    _basic2.default.class(item, 'hidden');
+	    _basic2.default.css(item, 'display: none');
 	
 	    console.log(node);
 	});

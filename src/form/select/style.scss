@@ -1,5 +1,8 @@
 @import '../../basic/var.scss';
 
+$select-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSwgMi41KSBzY2FsZSgxLCAtMSkgdHJhbnNsYXRlKC01LCAtMi41KSAiIHBvaW50cz0iNSAwIDEwIDUgMCA1Ij48L3BvbHlnb24+Cjwvc3ZnPg==';
+$select-icon-reverse: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgcG9pbnRzPSI1IDAgMTAgNSAwIDUiPjwvcG9seWdvbj4KPC9zdmc+';
+
 select {
     -webkit-appearance: none;
     padding: $gap-tiny $gap-normal;
@@ -10,5 +13,47 @@ select {
     color: $dark;
     outline: none;
     position: relative;
-    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSwgMi41KSBzY2FsZSgxLCAtMSkgdHJhbnNsYXRlKC01LCAtMi41KSAiIHBvaW50cz0iNSAwIDEwIDUgMCA1Ij48L3BvbHlnb24+Cjwvc3ZnPg==') no-repeat 85% center;
+    background: url($select-icon) no-repeat 85% center;
+}
+
+.g-selector {
+    position: relative;
+    display: inline-block;
+    input {
+        padding-right: $gap-middle;
+        background: url($select-icon) no-repeat 90% center;
+    }
+    ul {
+        position: absolute;
+        width: 100%;
+        padding: $gap-small 0;
+        margin: $gap-tiny 0;
+        list-style: none;
+        border: $border solid $green;
+        background: $white;
+        z-index: 10;
+        border-radius: 3px;
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform .2s ease-in-out;
+        will-change: transform;
+        // box-shadow: 0 .01rem .02rem $black20;
+    }
+    li {
+        padding: $gap-tiny $gap-normal;
+        cursor: pointer;
+        &:hover {
+            background: $green;
+            color: #fff;
+        }
+    }
+
+    &.slideDown {
+        ul {
+            transform: scaleY(1);
+        }
+        input {
+            background-image: url($select-icon-reverse);
+        }
+    }
 }

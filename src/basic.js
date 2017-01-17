@@ -25,6 +25,14 @@ export default {
         return node;
     },
 
+    attr: (node, attr, newVal = null) => {
+        if (newVal) {
+            node.setAttribute(attr, newVal);
+            return;
+        }
+
+        return node.getAttribute(attr);
+    },
     /**
      * return [[Attribute Name, Attribute Value],...]
      */
@@ -38,19 +46,44 @@ export default {
         return attrs;
     },
 
+    class: (node, className, remove = false) => {
+        if (remove) {
+            node.classList.remove(className);
+            return;
+        }
+        if (Array.isArray(className)) {
+            node.classList.add(...className);
+            return;
+        }
+        node.classList.add(className);
+    },
+
+    css: (node, styles) => {
+        node.style.cssText = node.style.cssText ? node.style.cssText += styles : styles;
+    },
+
     vdom: class VDOM {
-        constructor(tagName = 'div', attrs = {}, children = []) {
+        constructor (tagName = 'div', attrs = {}, children = []) {
             this.tagName = tagName;
             this.attrs = attrs;
             this.children = Array.isArray(children) ? children : Array.from(children);
+
+            this.event = [];
         }
 
-        render() {
+        render () {
             const node = document.createElement(this.tagName);
             const attrs = this.attrs;
 
             for (let attr in attrs) {
                 node.setAttribute(attr, attrs[attr]);
+            }
+
+            console.log(this.event);
+            if (this.event.length) {
+                this.event.forEach(eachEvent => {
+                    node.addEventListener(eachEvent.eventName, eachEvent.callback);
+                });
             }
 
             const children = this.children;
@@ -62,6 +95,13 @@ export default {
             });
 
             return node;
+        }
+
+        addEvent (eventName, callback) {
+            this.event.push({
+                eventName: eventName,
+                callback: callback
+            });
         }
     },
 
