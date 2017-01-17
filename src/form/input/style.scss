@@ -7,6 +7,7 @@ textarea {
     outline: none;
     padding: $gap-tiny $gap-small;
     border-radius: 3px;
+    -webkit-appearance: none;
 
     &::placeholder {
         color: $gray;
@@ -51,12 +52,6 @@ textarea {
         &::placeholder {
             color: darken($red, 20%);
         }
-    }
-
-    &[disabled] {
-        border-color: $gray-light;
-        background: $light;
-        cursor: not-allowed;
     }
 
     &.g-input--big {

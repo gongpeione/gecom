@@ -8,15 +8,15 @@ webpackJsonp([0,1],[
 	
 	__webpack_require__(3);
 	
-	__webpack_require__(4);
+	__webpack_require__(13);
 	
-	__webpack_require__(6);
+	__webpack_require__(15);
 	
-	__webpack_require__(16);
+	__webpack_require__(28);
 	
-	__webpack_require__(18);
+	__webpack_require__(30);
 	
-	__webpack_require__(20);
+	__webpack_require__(32);
 	
 	console.log('src');
 
@@ -29,132 +29,175 @@ webpackJsonp([0,1],[
 /***/ },
 /* 2 */,
 /* 3 */
-/***/ function(module, exports) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = {
-	    $: function $(selector) {
-	        var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-	
-	        if (context instanceof NodeList) {
-	            return Array.from(context, function (node) {
-	                return node.querySelector(selector);
-	            });
-	        }
-	        return context.querySelector(selector);
-	    },
-	    $$: function $$(selector) {
-	        var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
-	
-	        if (context instanceof NodeList) {
-	            return Array.from(context, function (node) {
-	                return node.querySelectorAll(selector);
-	            });
-	        }
-	        return context.querySelectorAll(selector);
-	    },
-	
-	    keyCode: {
-	        'up': 38,
-	        'down': 40
-	    }
-	};
-
-/***/ },
-/* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
+	
+	__webpack_require__(4);
 	
 	__webpack_require__(5);
 	
-	console.log('data');
-
-/***/ },
-/* 5 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 6 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
 	__webpack_require__(7);
 	
-	__webpack_require__(8);
-	
-	__webpack_require__(10);
-	
-	__webpack_require__(12);
-	
-	__webpack_require__(14);
-	
-	console.log('form');
-
-/***/ },
-/* 7 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 8 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
 	__webpack_require__(9);
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 10 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
 	
 	__webpack_require__(11);
 
 /***/ },
-/* 11 */
+/* 4 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(6);
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(8);
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 9 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(10);
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(12);
 
 /***/ },
 /* 12 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	__webpack_require__(13);
-
-/***/ },
-/* 13 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(15);
+	__webpack_require__(14);
 	
-	var _basic = __webpack_require__(3);
+	console.log('data');
+
+/***/ },
+/* 14 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(16);
+	
+	__webpack_require__(17);
+	
+	__webpack_require__(19);
+	
+	__webpack_require__(21);
+	
+	__webpack_require__(23);
+	
+	__webpack_require__(26);
+	
+	console.log('form');
+
+/***/ },
+/* 16 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(18);
+
+/***/ },
+/* 18 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(20);
+
+/***/ },
+/* 20 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 21 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(22);
+
+/***/ },
+/* 22 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(24);
+	
+	var _basic = __webpack_require__(25);
 	
 	var _basic2 = _interopRequireDefault(_basic);
 	
@@ -251,55 +294,220 @@ webpackJsonp([0,1],[
 	console.log(inputNum, input, min, plus);
 
 /***/ },
-/* 15 */
+/* 24 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 16 */
+/* 25 */
+/***/ function(module, exports) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	exports.default = {
+	    $: function $(selector) {
+	        var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+	
+	        if (context instanceof NodeList) {
+	            return Array.from(context, function (node) {
+	                return node.querySelector(selector);
+	            });
+	        }
+	        return context.querySelector(selector);
+	    },
+	    $$: function $$(selector) {
+	        var context = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : document;
+	
+	        if (context instanceof NodeList) {
+	            return Array.from(context, function (node) {
+	                return node.querySelectorAll(selector);
+	            });
+	        }
+	        return context.querySelectorAll(selector);
+	    },
+	
+	    create: function create() {
+	        var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+	        var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	
+	        var node = document.createElement(tagName);
+	        for (var key in attrs) {
+	            node.setAttribute(key, attrs[key]);
+	        }
+	
+	        return node;
+	    },
+	
+	    attrs: function attrs(node) {
+	        var attrs = {};
+	        Array.from(node.attributes).forEach(function (attr) {
+	            var attrName = attr.nodeName;
+	            attrs[attrName] = node.getAttribute(attrName);
+	        });
+	
+	        return attrs;
+	    },
+	
+	    vdom: function () {
+	        function VDOM() {
+	            var tagName = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'div';
+	            var attrs = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+	            var children = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+	
+	            _classCallCheck(this, VDOM);
+	
+	            this.tagName = tagName;
+	            this.attrs = attrs;
+	            this.children = Array.isArray(children) ? children : Array.from(children);
+	        }
+	
+	        _createClass(VDOM, [{
+	            key: 'render',
+	            value: function render() {
+	                var node = document.createElement(this.tagName);
+	                var attrs = this.attrs;
+	
+	                for (var attr in attrs) {
+	                    node.setAttribute(attr, attrs[attr]);
+	                }
+	
+	                var children = this.children;
+	
+	                Array.from(children).forEach(function (child) {
+	                    var childEl = child instanceof VDOM ? child.render() : document.createTextNode(child);
+	
+	                    node.appendChild(childEl);
+	                });
+	
+	                return node;
+	            }
+	        }]);
+	
+	        return VDOM;
+	    }(),
+	
+	    keyCode: {
+	        'up': 38,
+	        'down': 40
+	    }
+	};
+
+/***/ },
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(17);
+	__webpack_require__(27);
+	
+	var _basic = __webpack_require__(25);
+	
+	var _basic2 = _interopRequireDefault(_basic);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var select = _basic2.default.$$('.g-select');
+	var vdom = _basic2.default.vdom;
+	
+	select.forEach(function (item) {
+	    var tmpFragment = document.createDocumentFragment();
+	    var parentNode = item.parentNode;
+	    var nodeAttrs = _basic2.default.attrs(item);
+	    var options = [];
+	    var optionsOriginal = _basic2.default.$$('option', item);
+	    var selected = { value: '', text: '' };
+	    var child = void 0;
+	
+	    optionsOriginal.forEach(function (child) {
+	        var text = child.innerText;
+	        var attrs = _basic2.default.attrs(child);
+	
+	        if ('selected' in attrs) {
+	            selected.text = text;
+	            selected.value = attrs['value'];
+	        }
+	        options.push(new vdom('li', attrs, [text]));
+	    });
+	    if (selected.value === '') {
+	        selected.text = optionsOriginal[0].innerText;
+	        selected.value = optionsOriginal[0].getAttribute('value');
+	    }
+	
+	    var input = new vdom('input', {
+	        type: 'text',
+	        readonly: true,
+	        value: selected.text,
+	        'data-value': selected.value
+	    });
+	    var selectList = new vdom('ul', {}, options);
+	
+	    nodeAttrs['class'] = nodeAttrs['class'] ? nodeAttrs['class'] += ' g-selector' : 'g-selector';
+	    var node = new vdom('div', nodeAttrs, [input, selectList]).render();
+	    parentNode.insertBefore(node, item);
+	    item.remove();
+	
+	    console.log(node);
+	});
+
+/***/ },
+/* 27 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 28 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	__webpack_require__(29);
 	
 	console.log('navigation');
 
 /***/ },
-/* 17 */
+/* 29 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 18 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(19);
+	__webpack_require__(31);
 	
 	console.log('notice');
 
 /***/ },
-/* 19 */
+/* 31 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
 
 /***/ },
-/* 20 */
+/* 32 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
-	__webpack_require__(21);
+	__webpack_require__(33);
 	
 	console.log('others');
 
 /***/ },
-/* 21 */
+/* 33 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

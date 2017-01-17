@@ -1,0 +1,11 @@
+@import '../basic/var.scss';
+
+input,
+select {
+    &[disabled] {
+        background-color: $light;
+        border-color: $gray-light;
+        color: $gray;
+        cursor: not-allowed;
+    }
+}

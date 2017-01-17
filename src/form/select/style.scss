@@ -1,10 +1,14 @@
 @import '../../basic/var.scss';
 
 select {
+    -webkit-appearance: none;
     padding: $gap-tiny $gap-normal;
+    padding-right: $gap-big;
     margin: 0;
     border: .01rem solid $light;
     background: $white;
     color: $dark;
     outline: none;
+    position: relative;
+    background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSwgMi41KSBzY2FsZSgxLCAtMSkgdHJhbnNsYXRlKC01LCAtMi41KSAiIHBvaW50cz0iNSAwIDEwIDUgMCA1Ij48L3BvbHlnb24+Cjwvc3ZnPg==') no-repeat 85% center;
 }

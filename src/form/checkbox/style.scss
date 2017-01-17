@@ -5,6 +5,7 @@ $inner-height: .06rem;
 
 input[type=checkbox] {
     display: none;
+    -webkit-appearance: none;
 }
 
 [class *= g-checkbox] {

@@ -5,6 +5,7 @@ $inner-height: .04rem;
 
 input[type=radio] {
     display: none;
+    -webkit-appearance: none;
 }
 
 [class *= g-radio] {
