@@ -1,6 +1,6 @@
 import './style.scss';
 
-import g from '../../basic';
+import { g, CONST } from '../../basic';
 
 const $ = g.$;
 const $$ = g.$$;
@@ -18,7 +18,7 @@ input.forEach(item => {
     });
     item.addEventListener('keyup', e => {
         const keyCode = e.keyCode;
-        if (keyCode != g.keyCode.up && keyCode != g.keyCode.down) {
+        if (keyCode != CONST.KEY_CODE.UP && keyCode != CONST.KEY_CODE.DOWN) {
             return;
         }
 
@@ -28,7 +28,7 @@ input.forEach(item => {
         const stepValue = item.dataset.step || 1;
         const step = parseInt(stepValue, 10);
 
-        if (keyCode == g.keyCode.up) {
+        if (keyCode == CONST.KEY_CODE.UP) {
 
             if (max > 0 && curCounter >= max) {
                 return;
@@ -40,7 +40,7 @@ input.forEach(item => {
             }
             item.dataset.counter = item.value = newVal;
 
-        } else if (keyCode == g.keyCode.down) {
+        } else if (keyCode == CONST.KEY_CODE.DOWN) {
             if (curCounter !== 0) {
                 let newVal = curCounter - step;
                 if (newVal < 0) {

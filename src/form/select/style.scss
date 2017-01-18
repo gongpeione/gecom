@@ -2,6 +2,7 @@
 
 $select-icon: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSwgMi41KSBzY2FsZSgxLCAtMSkgdHJhbnNsYXRlKC01LCAtMi41KSAiIHBvaW50cz0iNSAwIDEwIDUgMCA1Ij48L3BvbHlnb24+Cjwvc3ZnPg==';
 $select-icon-reverse: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTBweCIgaGVpZ2h0PSI1cHgiIHZpZXdCb3g9IjAgMCAxMCA1IiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPHBvbHlnb24gaWQ9IlRyaWFuZ2xlIiBzdHJva2U9Im5vbmUiIGZpbGw9IiM0NDQxNDEiIGZpbGwtcnVsZT0iZXZlbm9kZCIgcG9pbnRzPSI1IDAgMTAgNSAwIDUiPjwvcG9seWdvbj4KPC9zdmc+';
+$close: 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjBweCIgaGVpZ2h0PSIyMHB4IiB2aWV3Qm94PSIwIDAgMjAgMjAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8cGF0aCBkPSJNOS4yOTI4OTMyMiwxMCBMMS4xNDY0NDY2MSwxLjg1MzU1MzM5IEwwLjc5Mjg5MzIxOSwxLjUgTDEuNSwwLjc5Mjg5MzIxOSBMMS44NTM1NTMzOSwxLjE0NjQ0NjYxIEwxMCw5LjI5Mjg5MzIyIEwxOC4xNDY0NDY2LDEuMTQ2NDQ2NjEgTDE4LjUsMC43OTI4OTMyMTkgTDE5LjIwNzEwNjgsMS41IEwxOC44NTM1NTM0LDEuODUzNTUzMzkgTDEwLjcwNzEwNjgsMTAgTDE4Ljg1MzU1MzQsMTguMTQ2NDQ2NiBMMTkuMjA3MTA2OCwxOC41IEwxOC41LDE5LjIwNzEwNjggTDE4LjE0NjQ0NjYsMTguODUzNTUzNCBMMTAsMTAuNzA3MTA2OCBMMS44NTM1NTMzOSwxOC44NTM1NTM0IEwxLjUsMTkuMjA3MTA2OCBMMC43OTI4OTMyMTksMTguNSBMMS4xNDY0NDY2MSwxOC4xNDY0NDY2IEw5LjI5Mjg5MzIyLDEwIFoiIGlkPSJDb21iaW5lZC1TaGFwZSIgc3Ryb2tlPSIjRkZGRkZGIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJzcXVhcmUiIGZpbGw9Im5vbmUiPjwvcGF0aD4KPC9zdmc+';
 
 select {
     -webkit-appearance: none;
@@ -13,7 +14,7 @@ select {
     color: $dark;
     outline: none;
     position: relative;
-    background: url($select-icon) no-repeat 85% center;
+    background: url($select-icon) no-repeat 90% center;
 }
 
 .g-selector {
@@ -21,7 +22,45 @@ select {
     display: inline-block;
     input {
         padding-right: $gap-middle;
-        background: url($select-icon) no-repeat 90% center;
+    }
+    .arror {
+        position: absolute;
+        right: .1rem;
+        top: 50%;
+        transform: translateY(-50%) rotate(0);
+        background: url($select-icon) no-repeat center;
+        height: .2rem;
+        width: .2rem;
+        pointer-events: none;
+        transition: transform .2s ease-in-out;
+        opacity: .8;
+        // line-height: .2rem;
+    }
+    .close {
+        position: absolute;
+        right: .1rem;
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        cursor: pointer;
+        background: $gray-light url($close) center center no-repeat;
+        background-size: 50%;
+        height: .2rem;
+        width: .2rem;
+        line-height: .2rem;
+        color: $white;
+        text-align: center;
+        border-radius: 50%;
+        transition: transform .1s ease-in-out;
+
+        // will-change: transform;
+    }
+    &:hover {
+        .close {
+            transform: translateY(-50%) scale(1);
+        }
+        .close.hidden {
+            transform: translateY(-50%) scale(0);
+        }
     }
     ul {
         position: absolute;
@@ -36,8 +75,16 @@ select {
         transform: scaleY(0);
         transform-origin: top;
         transition: transform .2s ease-in-out;
-        will-change: transform;
+        // will-change: transform;
+        max-height: 2rem;
+        overflow-y: auto;
         // box-shadow: 0 .01rem .02rem $black20;
+
+        &:hover {
+            ~ .close {
+                transform: translateY(-50%) scale(0);
+            }
+        }
     }
     li {
         padding: $gap-tiny $gap-normal;
@@ -56,14 +103,25 @@ select {
                 color: $gray-light;
             }
         }
+
+        &.g-group--name {
+            color: $gray-light;
+            font-size: .12rem;
+            pointer-events: none;
+            padding: $gap-tiny $gap-small;
+            font-weight: 400;
+        }
     }
 
     &.slideDown {
         ul {
             transform: scaleY(1);
         }
-        input {
-            background-image: url($select-icon-reverse);
+        .arror {
+            transform: translateY(-50%) rotate(180deg); 
         }
+        // input {
+        //     background-image: url($select-icon-reverse);
+        // }
     }
 }

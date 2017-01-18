@@ -1,4 +1,15 @@
-export default {
+export const CONST = {
+    USE_CAPTURE: {
+        BUBBLING: false,
+        CAPTURE: true
+    },
+    KEY_CODE: {
+        UP: 38,
+        DOWN: 40
+    }
+};
+
+export const g = {
     /**
      * Get single element by selector
      * 
@@ -152,16 +163,12 @@ export default {
             return node;
         }
 
-        addEvent (eventName, callback) {
+        addEvent (eventName, callback, useCapture = CONST.USE_CAPTURE.BUBBLING) {
             this.event.push({
                 eventName: eventName,
-                callback: callback
+                callback: callback,
+
             });
         }
     },
-
-    keyCode: {
-        'up': 38,
-        'down': 40
-    }
 };
