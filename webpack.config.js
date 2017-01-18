@@ -19,7 +19,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
     title: 'Geeku',
     template: path.resolve(__dirname, './index.html'),
     inject: 'body',
-    hash: true,
+    // hash: true,
     minify: {
         collapseWhitespace: true
     }
@@ -33,7 +33,7 @@ module.exports = {
     output: {
         path: docsDir,
         publicPath: '',
-        filename: 'js/index.js',
+        filename: 'js/index.[chunkhash].js',
         chunckFileName: '[id].bundle.js'
     },
     module: {

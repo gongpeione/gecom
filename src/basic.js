@@ -1,4 +1,11 @@
 export default {
+    /**
+     * Get single element by selector
+     * 
+     * @param {String} selector
+     * @param {Element} [context=document]
+     * @returns {Element} element
+     */
     $: (selector, context = document) => {
         if (context instanceof NodeList) {
             return Array.from(context, node => {
@@ -7,6 +14,14 @@ export default {
         }
         return context.querySelector(selector);
     },
+
+    /**
+     * Get elements by selector
+     * 
+     * @param {String} selector
+     * @param {Element} [context=document]
+     * @returns {Array} elements list
+     */
     $$: (selector, context = document) => {
         if (context instanceof NodeList) {
             return Array.from(context, node => {
@@ -16,6 +31,14 @@ export default {
         return context.querySelectorAll(selector);
     },
 
+    
+    /**
+     * Create a new element
+     * 
+     * @param {string} [tagName='div']
+     * @param {Object} [attrs={}]
+     * @returns {Element} new element
+     */
     create: (tagName = 'div', attrs = {}) => {
         const node = document.createElement(tagName);
         for (let key in attrs) {
@@ -25,6 +48,14 @@ export default {
         return node;
     },
 
+    /**
+     * Get or set element's attribute
+     * 
+     * @param {Element} node
+     * @param {String} attr
+     * @param {String} [newVal=null]
+     * @returns {String} element's attribute value or null
+     */
     attr: (node, attr, newVal = null) => {
         if (newVal) {
             node.setAttribute(attr, newVal);
@@ -34,7 +65,10 @@ export default {
         return node.getAttribute(attr);
     },
     /**
-     * return [[Attribute Name, Attribute Value],...]
+     * Return a array of all element's attributes
+     * 
+     * @param {Element} node
+     * @returns [{Attribute Name: Attribute Value},...]
      */
     attrs: node => {
         const attrs = {};
@@ -46,6 +80,14 @@ export default {
         return attrs;
     },
 
+    /**
+     * Add or remove element's class name
+     * 
+     * @param {Element} node
+     * @param {String} className
+     * @param {boolean} [remove=false]
+     * @returns
+     */
     class: (node, className, remove = false) => {
         if (remove) {
             node.classList.remove(className);
@@ -58,11 +100,24 @@ export default {
         node.classList.add(className);
     },
 
+    /**
+     * Set style
+     * 
+     * @param {Element} node
+     * @param {String} styles
+     */
     css: (node, styles) => {
         node.style.cssText = node.style.cssText ? node.style.cssText += styles : styles;
     },
 
     vdom: class VDOM {
+        /**
+         * Creates an instance of VDOM.
+         * 
+         * @param {string} [tagName='div'] element tag name
+         * @param {Object} [attrs={}] element's attributes like id,class,name etc
+         * @param {VDOM} [children=[]] children nodes
+         */
         constructor (tagName = 'div', attrs = {}, children = []) {
             this.tagName = tagName;
             this.attrs = attrs;
