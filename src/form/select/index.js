@@ -31,14 +31,20 @@ select.forEach(item => {
             const parent = ul.parentNode;
             const input = g.$('input', parent);
 
+            if (g.attr(li, 'disabled')) {
+                return;
+            }
+
             parent.classList.remove('slideDown');
             input.value = li.innerText;
-            input['data-value'] = g.attr(li, 'value');
+            g.attr(input, 'data-value', g.attr(li, 'value'));
 
-            console.log(li, ul, parent, input);
+            // console.log(li, ul, parent, input);
         });
         options.push(listItem);
     });
+    const selectList = new vdom('ul', {}, options);
+
     if (selected.value === '') {
         selected.text = optionsOriginal[0].innerText;
         selected.value = optionsOriginal[0].getAttribute('value');
@@ -46,6 +52,7 @@ select.forEach(item => {
 
     const input = new vdom('input', {
         type: 'text',
+        name: nodeAttrs.name,
         readonly: true,
         value: selected.text,
         'data-value': selected.value
@@ -55,21 +62,27 @@ select.forEach(item => {
 
         parent.classList.toggle('slideDown');
     });
-    input.addEvent('blur', e => {
-        const parent = e.target.parentNode;
+    // input.addEvent('blur', e => {
+    //     const target = e.target;
+    //     const parent = target.parentNode;
 
-        parent.classList.remove('slideDown');
-    });
-    const selectList = new vdom('ul', {}, options);
+    //     console.log(target);
+    //     parent.classList.remove('slideDown');
+    // });
 
-    nodeAttrs['class'] = nodeAttrs['class'] ? nodeAttrs['class'] += ' g-selector' : 'g-selector';
-    const node = new vdom('div', nodeAttrs, [ input, selectList ]);
-    console.log(node);
+    // nodeAttrs['class'] = nodeAttrs['class'] ? nodeAttrs['class'] += ' g-selector' : 'g-selector';
+    const node = new vdom('div', {
+        class: 'g-selector'
+    }, [ input, selectList ]);
+    const nodeRendered = node.render();
+    // console.log(node);
     
-    parentNode.insertBefore(node.render(), item);
+    parentNode.insertBefore(nodeRendered, item);
 
-    g.class(item, 'hidden');
-    g.css(item, 'display: none');
+    // g.class(item, 'hidden');
+    // g.css(item, 'display: none');
 
-    console.log(node);
+    item.remove();
+
+    // console.log(node);
 });

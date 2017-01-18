@@ -79,7 +79,7 @@ export default {
                 node.setAttribute(attr, attrs[attr]);
             }
 
-            console.log(this.event);
+            // console.log(this.event);
             if (this.event.length) {
                 this.event.forEach(eachEvent => {
                     node.addEventListener(eachEvent.eventName, eachEvent.callback);

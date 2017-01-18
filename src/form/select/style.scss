@@ -46,6 +46,16 @@ select {
             background: $green;
             color: #fff;
         }
+
+        &[disabled] {
+            color: $gray-light;
+            cursor: not-allowed;
+
+            &:hover {
+                background: transparent;
+                color: $gray-light;
+            }
+        }
     }
 
     &.slideDown {
