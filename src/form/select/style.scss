@@ -46,7 +46,7 @@ select {
         background-size: 50%;
         height: .2rem;
         width: .2rem;
-        line-height: .2rem;
+        line-height: .15rem;
         color: $white;
         text-align: center;
         border-radius: 50%;
@@ -56,7 +56,7 @@ select {
     }
     &:hover {
         .close {
-            transform: translateY(-50%) scale(1);
+            transform: translateY(-50%) scale(.8);
         }
         .close.hidden {
             transform: translateY(-50%) scale(0);

@@ -2,127 +2,180 @@ import './style.scss';
 
 import { g, CONST } from '../../basic';
 
-const select = g.$$('.g-select');
 const vdom = g.vdom;
-const selectRenderedList = [];
 
-select.forEach(item => {
+class SelectorManager {
 
-    const tmpFragment = document.createDocumentFragment();
-    const parentNode = item.parentNode;
-    const nodeAttrs = g.attrs(item);
-    const options = [];
-    const optionsGroup = {};
-    const optionsOriginal = g.$$('option', item);
-    const mode = nodeAttrs['data-mode'] ? nodeAttrs['data-mode'].split(/[,\s，]/) : [];
-    let selected = { value: '', text: '' };
-    let child;
+    constructor (selectClass = '.g-select') {
 
-    // debugger;
-
-    optionsOriginal.forEach(child => {
-        const text = child.innerText;
-        const attrs = g.attrs(child);
-
-        if ('selected' in attrs) {
-            selected.text = text;
-            selected.value =  attrs['value'];
-        }
-
-        const listItem = new vdom('li', attrs, [ text ]);
-        listItem.addEvent('click', e => {
-            const li = e.target;
-            const ul = li.parentNode;
-            const parent = ul.parentNode;
-            const input = g.$('input', parent);
-
-            if (g.attr(li, 'disabled')) {
-                return;
-            }
-
-            parent.classList.remove('slideDown');
-
-            if (mode.indexOf('clearable') >= 0) {
-                const close = g.$('.close', parent);
-                close.classList.remove('hidden');
-            }
-            
-            input.value = li.innerText;
-            g.attr(input, 'data-value', g.attr(li, 'value'));
-
-            // console.log(li, ul, parent, input);
-        });
-
-        if (mode.indexOf('group') < 0) {
-            options.push(listItem);
-        } else {
-            const groupName = attrs['data-group'] || 'Other';
-            if (Array.isArray(optionsGroup[groupName])) {
-                optionsGroup[groupName].push(listItem);
-            } else {
-                optionsGroup[groupName] = [];
-                optionsGroup[groupName].push(listItem);
-            }
-        }
+        this.select = g.$$(selectClass);
         
-    });
-    let selectList;
-    if (mode.indexOf('group') >= 0) {
-        const optionsGroupAfter = [];
-        for (let groupName in optionsGroup) {
-            optionsGroupAfter.push(new vdom('li', {
-                class: 'g-group--name'
-            }, [
-                groupName
-            ]));
+        this.selectorRenderedList = [];
 
-            optionsGroup[groupName].forEach(option => {
-                optionsGroupAfter.push(option);
-            });
-        }
-        selectList = new vdom('ul', {}, optionsGroupAfter);
-        // debugger;
-    } else {
-        selectList = new vdom('ul', {}, options);
+        this.selectorGenerator();
+
+        document.addEventListener('click', e => {
+            this.selectorFlush();
+        });
     }
 
-    // if (selected.value === '') {
-    //     selected.text = null;
-    //     selected.value = optionsOriginal[0].getAttribute('value');
-    // }
+    selectorGenerator () {
+        this.select.forEach(item => {
+            this.selectorRenderedList.push(new Selector(item, this));
+        });
+    }
 
-    const input = new vdom('input', {
-        type: 'text',
-        name: nodeAttrs.name,
-        readonly: true,
-        value: selected.text,
-        'data-value': selected.value,
-        placeholder: '请选择'
-    });
-    input.addEvent('click', e => {
-        const parent = e.target.parentNode;
+    selectorFlush () {
+        this.selectorRenderedList.forEach(selector => {
+            selector.hide();
+        });
+    }
 
-        selectRenderedList.forEach(select => {
-            if (select !== parent) {
-                select.classList.remove('slideDown');
-            }   
+    getSeletorList () {
+        return this.selectorRenderedList;
+    }
+}
+
+class Selector {
+
+    constructor (select, manager) {
+        this.select = select;
+        this.manager = manager;
+        this.parentNode = select.parentNode;
+        this.nodeAttrs = g.attrs(select);
+        this.options = [];
+        this.optionsGroup = {};
+        this.optionsOriginal = g.$$('option', this.select);
+        this.mode = this.nodeAttrs['data-mode'] ? this.nodeAttrs['data-mode'].split(/[,\s，]/) : [];
+        this.selected = { value: '', text: '' };
+        this.child = null;
+        this.nodeChildren = [];
+        this.selectRendered = null;
+
+        this.walkOriginal();
+        this.inputGenerator();
+        this.optionListGenerator();
+        this.buttonsGenerator();
+        this.render();
+    }
+
+    walkOriginal () {
+
+        this.optionsOriginal.forEach(child => {
+
+            const text = child.innerText;
+            const attrs = g.attrs(child);
+
+            if ('selected' in attrs) {
+                this.selected.text = text;
+                this.selected.value =  attrs['value'];
+            }
+
+            const listItem = new vdom('li', attrs, [ text ]);
+            listItem.addEvent('click', e => {
+
+                const li = e.target;
+                const ul = li.parentNode;
+                const parent = ul.parentNode;
+                const input = g.$('input', parent);
+
+                if (g.attr(li, 'disabled')) {
+                    return;
+                }
+
+                parent.classList.remove('slideDown');
+
+                if (this.mode.indexOf('clearable') >= 0) {
+                    const close = g.$('.close', parent);
+                    close.classList.remove('hidden');
+                }
+
+                input.value = li.innerText;
+                g.attr(input, 'data-value', g.attr(li, 'value'));
+            });
+
+            if (this.mode.indexOf('group') < 0) {
+                this.options.push(listItem);
+            } else {
+                const groupName = attrs['data-group'] || 'Other';
+                if (Array.isArray(this.optionsGroup[groupName])) {
+                    this.optionsGroup[groupName].push(listItem);
+                } else {
+                    this.optionsGroup[groupName] = [];
+                    this.optionsGroup[groupName].push(listItem);
+                }
+            }
+            
+        });
+    }
+
+    optionListGenerator () {
+
+        let optionList = [];
+
+        if (this.mode.indexOf('group') >= 0) {
+
+            const optionsGroupAfter = [];
+            for (let groupName in this.optionsGroup) {
+                optionsGroupAfter.push(new vdom('li', {
+                    class: 'g-group--name'
+                }, [
+                    groupName
+                ]));
+
+                this.optionsGroup[groupName].forEach(option => {
+                    optionsGroupAfter.push(option);
+                });
+            }
+            optionList = new vdom('ul', {}, optionsGroupAfter);
+
+        } else {
+            optionList = new vdom('ul', {}, this.options);
+        }
+
+        this.nodeChildren.push(optionList);
+    }
+
+    inputGenerator () {
+
+        const input = new vdom('input', {
+            type: 'text',
+            name: this.nodeAttrs.name,
+            readonly: true,
+            value: this.selected.text,
+            'data-value': this.selected.value,
+            placeholder: '请选择'
+        });
+        input.addEvent('click', e => {
+
+            const parent = e.target.parentNode;
+
+            this.manager.getSeletorList().forEach(selector => {
+                if (selector !== this) {
+                    selector.hide();
+                }
+            });
+
+            parent.classList.toggle('slideDown');
+
+            e.stopPropagation();
         });
 
-        parent.classList.toggle('slideDown');
+        this.nodeChildren.push(input);
+    }
 
-        e.stopPropagation();
-    });
+    buttonsGenerator () {
+       
+        //arror
+        const arror = new vdom('div', {
+            class: 'arror'
+        }, []);
+        this.nodeChildren.push(arror);
 
-    const nodeChildren = [ input, selectList ];
-
-    //arror
-    const arror = new vdom('div', {
-        class: 'arror'
-    }, []);
-    nodeChildren.push(arror);
-
-    // Add clean button
-    if (mode.indexOf('clearable') >= 0) {
+        // Add clean button
+        if (this.mode.indexOf('clearable') < 0) {
+            return;
+        }
         const close = new vdom('div', {
             class: 'close hidden'
         }, []);
@@ -130,30 +183,33 @@ select.forEach(item => {
             const parent = e.target.parentNode;
             const input = g.$('input', parent);
             const close = g.$('.close', parent);
+            
             input.value = '';
-            console.log(input);
             input.dataset.value = '';
+
             close.classList.add('hidden');
         });
-        nodeChildren.push(close);
+        this.nodeChildren.push(close);
     }
 
-    const node = new vdom('div', {
-        class: 'g-selector'
-    }, nodeChildren);
-    const nodeRendered = node.render();
-    // console.log(node);
-    
-    selectRenderedList.push(nodeRendered);
-    parentNode.insertBefore(nodeRendered, item);
+    render () {
 
-    item.remove();
-});
+        const node = new vdom('div', {
+            class: 'g-selector'
+        }, this.nodeChildren);
+        this.selectRendered = node.render();
+        
+        this.parentNode.insertBefore(this.selectRendered, this.select);
 
+        this.select.remove();
+    }
 
-document.addEventListener('click', e => {
-    selectRenderedList.forEach(select => {
-        select.classList.remove('slideDown');
-    });
-});
-// console.log(selectRenderedList);
+    hide () {
+        this.selectRendered.classList.remove('slideDown');
+    }
+}
+
+const selectorManager = new SelectorManager();
+console.log(selectorManager);
+
+export default SelectorManager;
