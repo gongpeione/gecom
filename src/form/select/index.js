@@ -3,36 +3,38 @@ import './style.scss';
 import { g, CONST } from '../../basic';
 
 const vdom = g.vdom;
+const $ = g.$;
+const $$ = g.$$;
 
 class SelectorManager {
 
-    constructor (selectClass = '.g-select') {
+    constructor (className = '.g-select') {
 
-        this.select = g.$$(selectClass);
+        this.original = $$(className);
         
-        this.selectorRenderedList = [];
+        this.renderedList = [];
 
-        this.selectorGenerator();
+        this.generate();
 
         document.addEventListener('click', e => {
-            this.selectorFlush();
+            this.flush();
         });
     }
 
-    selectorGenerator () {
-        this.select.forEach(item => {
-            this.selectorRenderedList.push(new Selector(item, this));
+    generate () {
+        this.original.forEach(item => {
+            this.renderedList.push(new Selector(item, this));
         });
     }
 
-    selectorFlush () {
-        this.selectorRenderedList.forEach(selector => {
+    flush () {
+        this.renderedList.forEach(selector => {
             selector.hide();
         });
     }
 
-    getSeletorList () {
-        return this.selectorRenderedList;
+    getList () {
+        return this.renderedList;
     }
 }
 
@@ -45,7 +47,7 @@ class Selector {
         this.nodeAttrs = g.attrs(select);
         this.options = [];
         this.optionsGroup = {};
-        this.optionsOriginal = g.$$('option', this.select);
+        this.optionsOriginal = $$('option', this.select);
         this.mode = this.nodeAttrs['data-mode'] ? this.nodeAttrs['data-mode'].split(/[,\s，]/) : [];
         this.selected = { value: '', text: '' };
         this.child = null;
@@ -77,7 +79,7 @@ class Selector {
                 const li = e.target;
                 const ul = li.parentNode;
                 const parent = ul.parentNode;
-                const input = g.$('input', parent);
+                const input = $('input', parent);
 
                 if (g.attr(li, 'disabled')) {
                     return;
@@ -86,7 +88,7 @@ class Selector {
                 parent.classList.remove('slideDown');
 
                 if (this.mode.indexOf('clearable') >= 0) {
-                    const close = g.$('.close', parent);
+                    const close = $('.close', parent);
                     close.classList.remove('hidden');
                 }
 
@@ -150,7 +152,7 @@ class Selector {
 
             const parent = e.target.parentNode;
 
-            this.manager.getSeletorList().forEach(selector => {
+            this.manager.getList().forEach(selector => {
                 if (selector !== this) {
                     selector.hide();
                 }
@@ -181,8 +183,8 @@ class Selector {
         }, []);
         close.addEvent('click', e => {
             const parent = e.target.parentNode;
-            const input = g.$('input', parent);
-            const close = g.$('.close', parent);
+            const input = $('input', parent);
+            const close = $('.close', parent);
             
             input.value = '';
             input.dataset.value = '';

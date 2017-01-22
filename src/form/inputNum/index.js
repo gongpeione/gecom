@@ -10,6 +10,44 @@ const input = $('input', inputNum);
 const min = $('.min', inputNum);
 const plus = $('.plus', inputNum);
 
+class InputNumManager {
+
+    constructor (className = '.g-input--num') {
+
+        this.original = $$(className);
+        
+        this.renderedList = [];
+
+        this.generate();
+    }
+
+    generate () {
+        this.original.forEach(item => {
+            this.renderedList.push(new InputNum(item, this));
+        });
+    }
+
+    // selectorFlush () {
+    //     this.inputNumRenderedList.forEach(selector => {
+    //         selector.hide();
+    //     });
+    // }
+
+    getList () {
+        return this.renderedList;
+    }
+}
+
+class InputNum {
+    constructor (inputNum, manager) {
+        this.inputNum = inputNum;
+        this.manager = manager;
+    }
+}
+
+const inputNums = new InputNumManager('input[type=num].g-input--num');
+console.log(inputNums);
+
 input.forEach(item => {
     item.dataset.counter = item.value = 0;
     item.addEventListener('input', () => {
