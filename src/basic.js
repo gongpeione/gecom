@@ -167,8 +167,8 @@ export const g = {
             this.event.push({
                 eventName: eventName,
                 callback: callback,
-
             });
+            return this;
         }
     },
 };
