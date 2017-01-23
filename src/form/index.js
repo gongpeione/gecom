@@ -7,3 +7,4 @@ import './checkbox';
 import './input';
 import './inputNum';
 import './select';
+import './switch';

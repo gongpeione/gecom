@@ -69,7 +69,7 @@ class InputNum {
 
         const inputNumRendered = inputNum.render();
 
-        this.parentNode.insertBefore(inputNumRendered, this.select);
+        this.parentNode.insertBefore(inputNumRendered, this.original);
 
         this.original.remove();
     }

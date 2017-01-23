@@ -1,0 +1,63 @@
+@import '../../basic/var.scss';
+
+.g-input--switch_wrap {
+
+    display: inline-block;
+    
+    input[type=checkbox]:checked {
+
+        + label {
+            &::after {
+                left: calc(60% - .02rem);
+            }
+        }
+    }
+
+    input[type=checkbox][disabled] {
+        + label {
+            cursor: not-allowed;
+            &::before {
+                background: $light;
+            }
+            &::after {
+                left: calc(60% - .02rem);
+            }
+        }
+    }
+
+    label {
+        position: relative;
+        display: inline-block;
+        width: .4rem;
+        height: .2rem;
+        cursor: pointer;
+        &::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: $green;
+            border-radius: 3px;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            width: 40%;
+            height: calc(100% - .04rem);
+            top: 50%;
+            left: .02rem;
+            transform: translate(0, -50%);
+            background: $white;
+            border-radius: 3px;
+
+            transition: left .1s ease-in-out;
+        }
+
+        &:hover::after {
+            will-change: left;
+        }
+    }
+
+
+}
