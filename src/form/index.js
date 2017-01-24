@@ -8,3 +8,4 @@ import './input';
 import './inputNum';
 import './select';
 import './switch';
+import './slider';
