@@ -121,6 +121,14 @@ export const g = {
         node.style.cssText = node.style.cssText ? node.style.cssText += styles : styles;
     },
 
+    width: (node) => {
+        return node.getBoundingClientRect().width;
+    },
+
+    height: (node) => {
+        return node.getBoundingClientRect().height;
+    },
+
     vdom: class VDOM {
         /**
          * Creates an instance of VDOM.

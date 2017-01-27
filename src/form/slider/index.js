@@ -39,16 +39,39 @@ class Slider {
         this.cur = null;
 
         this.totalLength = 0;
-        this.curPercentage = 0;
+        this._curPercentage = 0;
         this.curPos = 0;
         this.oldPos = 0;
+
+        this._curValue = 0;
 
         // Deal with addEventListener callback this scope issus
         this.onDragHandler = this.onDrag.bind(this);
         this.onDragEndHandler = this.onDragEnd.bind(this);
 
+        Object.defineProperty(this, 'curPercentage', {
+            get: () => this._curPercentage,
+            set: newVal => {
+                this._curPercentage = newVal;
+                this.updatePos();
+                // console.log('[Set] ', newVal);
+            }
+        });
+
+        Object.defineProperty(this, 'curVal', {
+            get: () => this._curValue,
+            set: newVal => {
+                this._curValue = newVal;
+                this.btn.dataset.value = this._curValue;
+                // console.log('[Set] ', newVal);
+            }
+        });
+
         this.generate();
         this.updatePos({});
+        this.curVal = 0;
+
+        // console.log(this.curPercentage);
     }
 
     generate () {
@@ -59,7 +82,8 @@ class Slider {
         }, [ new vdom('div', { class: 'current' }) ]);
 
         const btn  = new vdom('div', {
-            class: 'button'
+            class: 'button',
+            'data-current': 0
         });
         btn.addEvent('mousedown', e => this.onMouseDown(e));
         
@@ -77,6 +101,7 @@ class Slider {
         this.btn = $('.button', this.rendered);
         this.line = $('.line', this.rendered);
         this.cur = $('.current', this.rendered);
+        this.totalLength = g.width(this.line);
     }
 
     generateInput () {
@@ -90,32 +115,55 @@ class Slider {
         // console.log(1);
         const oldPos = this.curPos;
         const newPos = e.clientX;
+        const diff = newPos - oldPos;
+        const diffPercentage = diff / this.totalLength;
+        const tmpPer = this.curPercentage + diffPercentage;
 
-        console.log(oldPos, newPos);
+        if (tmpPer >= 1) {
+            this.curPercentage = 1;
+        } else if (tmpPer <= 0) {
+            this.curPercentage = 0;
+        } else {
+            this.curPercentage = tmpPer;
+        }
+
+        const value = Math.floor(this.curPercentage * 100);
+
+        if (value != this.curVal) {
+            this.curVal = value
+        }
+        
+        // console.log(oldPos, newPos, diff, this.curPercentage);
 
         this.curPos = newPos;
     }
 
     onDragEnd (e) {
-        // // console.log(e);
+        console.log(e);
 
         // console.log('Drag End:', this, this.onDragHandler);
+        this.btn.classList.remove('dragging');
         document.removeEventListener('mousemove', this.onDragHandler);
         document.removeEventListener('mouseup', this.onDragEndHandler);
-
+        document.removeEventListener('contextmenu', this.onDragEndHandler);
     }
 
     onMouseDown (e) {
         // console.log(e, document, this.onDrag);
         // console.log('Drag Start:', this, this.onDragHandler);
         // this.
+        this.curPos = e.clientX;
+        this.btn.classList.add('dragging');
         document.addEventListener('mousemove', this.onDragHandler);
         document.addEventListener('mouseup', this.onDragEndHandler);
+        document.addEventListener('contextmenu', this.onDragEndHandler);
     }
 
-    updatePos ({ x = 0, y = 0 }) {
+    updatePos () {
 
-        console.log(this.btn, this.cur, this.line);
+        this.cur.style.width = this.curPercentage * 100 + '%';
+        this.btn.style.left = this.curPercentage * 100 + '%';
+        // console.log(this.btn, this.cur, this.line, this.totalLength);
 
     }
 }

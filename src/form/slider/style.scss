@@ -3,7 +3,7 @@
 .g-input--slider_wrap {
 
     position: relative;
-    padding: $gap-tiny $gap-small;
+    margin: $gap-normal 0;
 
     input {
         display: none;
@@ -33,13 +33,56 @@
         background: $green;
         left: 0;
         top: 50%;
-        transform: scale(1) translateY(-50%);
-        transform-origin: top;
+        transform: scale(1) translate(-50%, -50%);
+        transform-origin: 100% 0%;
         // margin-left: -.05rem;
         cursor: pointer;
 
         &:hover {
             transform: scale(1.5) translateY(-50%);
+            will-change: left;
+
+            &::after,
+            &::before {
+                display: block;
+            }
+        }
+        &.dragging {
+            transform: scale(1.5) translateY(-50%);
+
+            &::after,
+            &::before {
+                display: block;
+            }
+        }
+
+        &::after {
+            content: attr(data-value);
+            padding: $gap-tiny $gap-small;
+            background: $dark;
+            color: $white;
+            display: none;
+            border-radius: 3px;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -90%) scale(.5);
+        }
+        &::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border: 15px solid $dark;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+            border-left-color: transparent;
+            display: none;
+
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, -60%) scale(.5);
         }
     }
     
