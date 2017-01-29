@@ -36,7 +36,7 @@
         transform: scale(1) translate(-50%, -50%);
         transform-origin: 100% 0%;
         // margin-left: -.05rem;
-        cursor: pointer;
+        cursor: col-resize;
 
         &:hover {
             transform: scale(1.5) translateY(-50%);
@@ -49,6 +49,7 @@
         }
         &.dragging {
             transform: scale(1.5) translateY(-50%);
+            cursor: col-resize;
 
             &::after,
             &::before {

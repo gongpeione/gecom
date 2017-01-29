@@ -32,18 +32,25 @@ class Slider {
         this.original = sliderBtn;
         this.parentNode = this.original.parentNode;
         this.originalAttrs = g.attrs(this.original);
+        this.max = this.originalAttrs['data-max'] || 100;
+        this.callback = this.originalAttrs['data-callback'] || null;
+        // this.value 
         this.manager = manager;
         this.rendered = null;
         this.btn = null;
         this.line = null;
         this.cur = null;
+        this.input = null;
+        
+        const isValued = !!this.originalAttrs.value;
+        this._curVal = isValued ? parseInt(this.originalAttrs.value, 10) : 0;
+        this._curPercentage = isValued ? parseFloat(this.originalAttrs.value / this.max) : 0;
 
         this.totalLength = 0;
-        this._curPercentage = 0;
         this.curPos = 0;
         this.oldPos = 0;
 
-        this._curValue = 0;
+        // this._curValue = 0;
 
         // Deal with addEventListener callback this scope issus
         this.onDragHandler = this.onDrag.bind(this);
@@ -59,17 +66,22 @@ class Slider {
         });
 
         Object.defineProperty(this, 'curVal', {
-            get: () => this._curValue,
+            get: () => this._curVal,
             set: newVal => {
-                this._curValue = newVal;
-                this.btn.dataset.value = this._curValue;
+                this._curVal = newVal;
+                this.btn.dataset.value = this.curVal;
+                this.input.value = this.curVal;
                 // console.log('[Set] ', newVal);
+
+                if (this.callback) {
+                    // console.log('[Set]', newVal);
+                    window.setTimeout(`${this.callback}(${this.curVal})`, 0);
+                }
             }
         });
 
         this.generate();
-        this.updatePos({});
-        this.curVal = 0;
+        this.updatePos();
 
         // console.log(this.curPercentage);
     }
@@ -83,7 +95,7 @@ class Slider {
 
         const btn  = new vdom('div', {
             class: 'button',
-            'data-current': 0
+            'data-value': this.curVal
         });
         btn.addEvent('mousedown', e => this.onMouseDown(e));
         
@@ -101,6 +113,7 @@ class Slider {
         this.btn = $('.button', this.rendered);
         this.line = $('.line', this.rendered);
         this.cur = $('.current', this.rendered);
+        this.input = $('input', this.rendered);
         this.totalLength = g.width(this.line);
     }
 
@@ -127,7 +140,7 @@ class Slider {
             this.curPercentage = tmpPer;
         }
 
-        const value = Math.floor(this.curPercentage * 100);
+        const value = Math.floor(this.curPercentage * this.max);
 
         if (value != this.curVal) {
             this.curVal = value
@@ -139,7 +152,7 @@ class Slider {
     }
 
     onDragEnd (e) {
-        console.log(e);
+        // console.log(e);
 
         // console.log('Drag End:', this, this.onDragHandler);
         this.btn.classList.remove('dragging');
@@ -168,6 +181,4 @@ class Slider {
     }
 }
 
-console.log(new SliderManager());
-
-export default SliderManager;
+export default new SliderManager();
