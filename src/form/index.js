@@ -9,4 +9,7 @@ import './input';
 import './inputNum';
 import './select';
 import './switch';
-import './slider';
+import sliderManager from './slider';
+
+window.g = {};
+window.g['sliderManager'] = sliderManager.renderedList;

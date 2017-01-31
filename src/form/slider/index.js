@@ -11,14 +11,19 @@ class SliderManager {
 
         this.original = $$(className);
         
-        this.renderedList = [];
+        this.renderedList = {};
 
         this.generate();
     }
 
     generate () {
         this.original.forEach(item => {
-            this.renderedList.push(new Slider(item, this));
+            const name = item.name;
+            if (name in this.renderedList) {
+                g.warn('Name already exist', item);
+                return;
+            }
+            this.renderedList[name] = new Slider(item, this);
         });
     }
 
@@ -71,12 +76,14 @@ class Slider {
                 this._curVal = newVal;
                 this.btn.dataset.value = this.curVal;
                 this.input.value = this.curVal;
+                this.curPercentage = this.curVal / this.max;
                 // console.log('[Set] ', newVal);
 
                 if (this.callback) {
                     // console.log('[Set]', newVal);
                     window.setTimeout(`${this.callback}(${this.curVal})`, 0);
                 }
+                
             }
         });
 
@@ -178,6 +185,14 @@ class Slider {
         this.btn.style.left = this.curPercentage * 100 + '%';
         // console.log(this.btn, this.cur, this.line, this.totalLength);
 
+    }
+
+    getValue () {
+        return this.curVal;
+    }
+
+    setValue (newVal) {
+        thi.curVal = newVal
     }
 }
 

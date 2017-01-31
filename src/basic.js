@@ -42,7 +42,10 @@ export const g = {
         return context.querySelectorAll(selector);
     },
 
-    
+    warn: (...msg) => {
+        console.warn(msg);
+    },
+
     /**
      * Create a new element
      * 
