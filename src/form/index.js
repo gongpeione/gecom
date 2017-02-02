@@ -6,10 +6,25 @@ console.log('form');
 import './radio';
 import './checkbox';
 import './input';
-import './inputNum';
-import './select';
-import './switch';
-import sliderManager from './slider';
+import InputNumManager from './inputNum';
+import SelectorManager from './select';
+import SwitchManager from './switch';
+import SliderManager from './slider';
 
-window.g = {};
-window.g['sliderManager'] = sliderManager.renderedList;
+// const gecomForm = {};
+
+// gecomForm['sliderManager'] = sliderManager.renderedList;
+
+// gecom.noConflict = function () {
+//     if (window.g === gecom)
+// }
+
+// window.gecom = gecom;
+
+// if (! 'g' in window) {
+//     window.g = window.gecom;
+// }
+
+export {
+    SliderManager, SelectorManager, InputNumManager, SwitchManager
+};

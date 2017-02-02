@@ -12,7 +12,7 @@ class SelectorManager {
 
         this.original = $$(className);
         
-        this.renderedList = [];
+        this.renderedList = {};
 
         this.generate();
 
@@ -23,14 +23,22 @@ class SelectorManager {
 
     generate () {
         this.original.forEach(item => {
-            this.renderedList.push(new Selector(item, this));
+            const name = item.name;
+            if (name in this.renderedList) {
+                g.warn('Name already exist', item);
+                return;
+            }
+            this.renderedList[name] = new Selector(item, this);
         });
     }
 
     flush () {
-        this.renderedList.forEach(selector => {
-            selector.hide();
-        });
+        for (name in this.renderedList) {
+            this.renderedList[name].hide();
+        }
+        // this.renderedList.forEach(selector => {
+        //     selector.hide();
+        // });
     }
 
     getList () {
@@ -151,12 +159,15 @@ class Selector {
         input.addEvent('click', e => {
 
             const parent = e.target.parentNode;
+            const renderedList = this.manager.getList();
 
-            this.manager.getList().forEach(selector => {
-                if (selector !== this) {
-                    selector.hide();
+            // console.log(this.manager.getList());
+            for (name in renderedList) {
+                // consol
+                if (renderedList[name] !== this) {
+                    renderedList[name].hide();
                 }
-            });
+            };
 
             parent.classList.toggle('slideDown');
 
@@ -211,7 +222,4 @@ class Selector {
     }
 }
 
-const selectorManager = new SelectorManager();
-console.log(selectorManager);
-
-export default SelectorManager;
+export default new SelectorManager();

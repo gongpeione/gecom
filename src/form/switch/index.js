@@ -12,14 +12,19 @@ class SwitchManager {
 
         this.original = $$(className);
         
-        this.renderedList = [];
+        this.renderedList = {};
 
         this.generate();
     }
 
     generate () {
         this.original.forEach(item => {
-            this.renderedList.push(new Switch(item, this));
+            const name = item.name;
+            if (name in this.renderedList) {
+                g.warn('Name already exist', item);
+                return;
+            }
+            this.renderedList[name] = new Switch(item, this);
         });
     }
 
@@ -65,5 +70,5 @@ class Switch {
     }
 }
 
-const switchBtn = new SwitchManager('input.g-input--switch');
-console.log(switchBtn)
+export default new SwitchManager('input.g-input--switch');
+// console.log(switchBtn)
