@@ -147,13 +147,13 @@ class Slider {
             this.curPercentage = tmpPer;
         }
 
-        const value = Math.floor(this.curPercentage * this.max);
+        // const value = Math.floor(this.curPercentage * this.max);
 
-        if (value != this.curVal) {
-            this.curVal = value
-        }
+        // if (value != this.curVal) {
+        //     this.curVal = value
+        // }
         
-        // console.log(oldPos, newPos, diff, this.curPercentage);
+        console.log(oldPos, newPos, diff, this.curPercentage);
 
         this.curPos = newPos;
     }
