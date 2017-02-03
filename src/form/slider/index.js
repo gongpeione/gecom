@@ -65,6 +65,7 @@ class Slider {
             get: () => this._curPercentage,
             set: newVal => {
                 this._curPercentage = newVal;
+                this.curVal = Math.ceil(this.curPercentage * this.max);
                 this.updatePos();
                 // console.log('[Set] ', newVal);
             }
@@ -76,7 +77,7 @@ class Slider {
                 this._curVal = newVal;
                 this.btn.dataset.value = this.curVal;
                 this.input.value = this.curVal;
-                this.curPercentage = this.curVal / this.max;
+                // this.curPercentage = this.curVal / this.max;
                 // console.log('[Set] ', newVal);
 
                 if (this.callback) {
@@ -96,9 +97,26 @@ class Slider {
     generate () {
 
         const input = new vdom('input', this.originalAttrs);
+
         const line  = new vdom('div', {
             class: 'line'
         }, [ new vdom('div', { class: 'current' }) ]);
+        line.addEvent('click', e => {
+            const clientX = e.clientX;
+            const lineLeft = this.line.getBoundingClientRect().left;
+            const diff = clientX - lineLeft;
+            const diffPercentage = diff / this.totalLength;
+
+            if (diffPercentage >= 1) {
+                this.curPercentage = 1;
+            } else if (diffPercentage <= 0) {
+                this.curPercentage = 0;
+            } else {
+                this.curPercentage = diffPercentage;
+            }
+            
+            // console.log(clientX, lineLeft, diff);
+        });
 
         const btn  = new vdom('div', {
             class: 'button',
@@ -147,13 +165,13 @@ class Slider {
             this.curPercentage = tmpPer;
         }
 
-        // const value = Math.floor(this.curPercentage * this.max);
+        const value = Math.floor(this.curPercentage * this.max);
 
-        // if (value != this.curVal) {
-        //     this.curVal = value
-        // }
+        if (value != this.curVal) {
+            this.curVal = value
+        }
         
-        console.log(oldPos, newPos, diff, this.curPercentage);
+        // console.log(oldPos, newPos, diff, this.curPercentage);
 
         this.curPos = newPos;
     }
@@ -192,7 +210,8 @@ class Slider {
     }
 
     setValue (newVal) {
-        thi.curVal = newVal
+        // this.curVal = newVal
+        this.curPercentage = this.curVal / this.max;
     }
 }
 
