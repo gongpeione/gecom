@@ -10,6 +10,7 @@ import InputNumManager from './inputNum';
 import SelectorManager from './select';
 import SwitchManager from './switch';
 import SliderManager from './slider';
+import RateMangaer from './rate';
 
 // const gecomForm = {};
 

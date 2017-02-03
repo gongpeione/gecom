@@ -1,0 +1,22 @@
+@import '../../basic/var.scss';
+
+.g-input--rate {
+    font-size: .3rem;
+    position: relative;
+    display: inline-block;
+    height: .3rem;
+    line-height: .3rem;
+    cursor: pointer;
+    .bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $light;
+    }
+    .star {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: $yellow;
+    }
+}
